@@ -1,0 +1,15 @@
+{
+  "name": "job-management-saas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Multi-tenant job management SaaS — database tooling (client app lives in ./client)",
+  "scripts": {
+    "migrate": "node --env-file=.env.local scripts/migrate.mjs",
+    "smoke": "node --env-file=.env.local scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "pg": "^8.13.1"
+  }
+}

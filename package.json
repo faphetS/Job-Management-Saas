@@ -6,7 +6,8 @@
   "description": "Multi-tenant job management SaaS — database tooling (client app lives in ./client)",
   "scripts": {
     "migrate": "node --env-file=.env.local scripts/migrate.mjs",
-    "smoke": "node --env-file=.env.local scripts/smoke-test.mjs"
+    "smoke": "node --env-file=.env.local scripts/smoke-test.mjs",
+    "seed": "node --env-file=.env.local scripts/seed-demo.mjs"
   },
   "devDependencies": {
     "@supabase/supabase-js": "^2.45.4",

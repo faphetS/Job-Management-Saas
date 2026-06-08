@@ -11,17 +11,17 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const BTN_VARIANTS = {
-  primary: 'bg-brand-600 text-white hover:bg-brand-700 disabled:bg-brand-300',
-  secondary: 'bg-white text-slate-700 ring-1 ring-inset ring-slate-300 hover:bg-slate-50',
-  ghost: 'text-slate-600 hover:bg-slate-100',
-  danger: 'bg-rose-600 text-white hover:bg-rose-700 disabled:bg-rose-300',
+  primary: 'bg-brand-600 text-white shadow-card hover:bg-brand-700 disabled:bg-brand-300',
+  secondary: 'bg-white text-slate-700 ring-1 ring-inset ring-slate-300 shadow-card hover:bg-slate-50 hover:ring-slate-400',
+  ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+  danger: 'bg-rose-600 text-white shadow-card hover:bg-rose-700 disabled:bg-rose-300',
 }
 
 export function Button({ variant = 'primary', size = 'md', className, ...props }: ButtonProps) {
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1',
+        'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-1',
         size === 'sm' ? 'px-3 py-1.5 text-sm' : 'px-4 py-2 text-sm',
         BTN_VARIANTS[variant],
         className,
@@ -43,7 +43,7 @@ export function Field({ label, hint, children }: { label?: string; hint?: string
 }
 
 const INPUT_CLS =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500'
+  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200'
 
 export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(INPUT_CLS, className)} {...props} />
@@ -63,7 +63,7 @@ export function Select({ className, children, ...props }: SelectHTMLAttributes<H
 
 // ---------------- Card ----------------
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn('rounded-xl border border-slate-200 bg-white shadow-sm', className)}>{children}</div>
+  return <div className={cn('rounded-xl border border-slate-200 bg-white shadow-card', className)}>{children}</div>
 }
 
 export function CardBody({ className, children }: { className?: string; children: ReactNode }) {
@@ -139,11 +139,11 @@ export function Modal({
 
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/40 p-4 sm:items-center">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/30 p-4 backdrop-blur-sm sm:items-center">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-lg rounded-xl bg-white shadow-xl">
+      <div className="relative z-10 w-full max-w-lg rounded-xl bg-white shadow-pop">
         <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3">
-          <h2 className="font-semibold text-slate-800">{title}</h2>
+          <h2 className="font-semibold text-ink-900">{title}</h2>
           <button onClick={onClose} className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600">
             ✕
           </button>

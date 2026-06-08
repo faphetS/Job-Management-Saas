@@ -35,6 +35,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           {/* Public */}
+          <Route path="/" element={<RoleHome />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupOwnerPage />} />
           <Route path="/register/:orgId" element={<RegisterPage role="client" />} />
@@ -42,7 +43,6 @@ export default function App() {
 
           {/* Authenticated */}
           <Route element={<RequireAuth />}>
-            <Route path="/" element={<RoleHome />} />
             <Route path="/onboarding" element={<OnboardingPage />} />
 
             {/* Owner / office */}

@@ -1,11 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #d9e6ff;
-  --color-brand-500: #2563eb;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1e40af;
+  /* Fonts — Figtree everywhere, DM Mono for small all-caps eyebrows/labels */
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Primary blue — token NAMES kept (brand-*) so existing classes keep working.
+     brand-600 #2563eb = 7.5:1 on white, brand-700 #1d4ed8 = 8.2:1 (AA-safe text). */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd; /* defines previously-missing disabled bg */
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  /* Dark blue / navy — headings, dark CTA band, logo */
+  --color-ink-700: #1f3e7a;
+  --color-ink-800: #16294f;
+  --color-ink-900: #1f2c47;
+
+  /* Light blue accent (the boss's light blue) — on-navy text, decorative */
+  --color-skyaccent: #99c5ff;
+
+  /* Elevation — borders do the work; one soft shadow for cards, one for pops */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-pop: 0 8px 28px rgba(16, 24, 40, 0.12);
 }
 
 html,
@@ -14,7 +37,56 @@ body,
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Landing-page motion — staggered reveal on scroll + gentle float on the hero mock */
+@keyframes lp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.lp-reveal {
+  opacity: 0;
+}
+.lp-reveal.lp-in {
+  animation: lp-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.lp-float {
+  animation: lp-float 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .lp-reveal,
+  .lp-reveal.lp-in,
+  .lp-float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

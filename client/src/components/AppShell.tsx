@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '@/auth/AuthContext'
 import { cn } from './ui'
+import { Logo } from './Logo'
 
 export interface NavItem {
   to: string
@@ -11,11 +12,8 @@ export interface NavItem {
 
 function Brand() {
   return (
-    <div className="flex items-center gap-2 px-2">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-sm font-bold text-white">
-        J
-      </span>
-      <span className="text-lg font-semibold tracking-tight text-slate-800">JobFlow</span>
+    <div className="px-2">
+      <Logo iconSize={26} wordmarkClassName="text-lg" />
     </div>
   )
 }
@@ -30,6 +28,12 @@ function navClass({ isActive }: { isActive: boolean }) {
 export function AppShell({ navItems, children }: { navItems: NavItem[]; children: ReactNode }) {
   const { profile, signOut } = useAuth()
   const roleLabel = profile?.role ? profile.role[0].toUpperCase() + profile.role.slice(1) : ''
+  const initials = (profile?.full_name || 'Account')
+    .split(' ')
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
 
   return (
     <div className="min-h-screen md:flex">
@@ -46,11 +50,18 @@ export function AppShell({ navItems, children }: { navItems: NavItem[]; children
           ))}
         </nav>
         <div className="border-t border-slate-200 p-3">
-          <p className="truncate px-2 text-sm font-medium text-slate-700">{profile?.full_name || 'Account'}</p>
-          <p className="px-2 text-xs text-slate-500">{roleLabel}</p>
+          <div className="flex items-center gap-2.5 px-1 py-1">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-100 text-xs font-semibold text-brand-700">
+              {initials}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-slate-800">{profile?.full_name || 'Account'}</p>
+              <p className="truncate text-xs text-slate-500">{roleLabel}</p>
+            </div>
+          </div>
           <button
             onClick={signOut}
-            className="mt-2 w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-slate-600 hover:bg-slate-100"
+            className="mt-2 w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
           >
             Sign out
           </button>
@@ -105,7 +116,7 @@ export function PageHeader({
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-ink-900">{title}</h1>
         {subtitle && <p className="mt-0.5 text-sm text-slate-500">{subtitle}</p>}
       </div>
       {actions && <div className="flex gap-2">{actions}</div>}

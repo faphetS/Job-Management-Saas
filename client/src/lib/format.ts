@@ -40,12 +40,12 @@ export const JOB_STATUS_LABELS: Record<JobStatus, string> = {
 
 export const JOB_STATUS_COLORS: Record<JobStatus, string> = {
   requested: 'bg-amber-100 text-amber-800',
-  scheduled: 'bg-sky-100 text-sky-800',
-  assigned: 'bg-indigo-100 text-indigo-800',
-  en_route: 'bg-violet-100 text-violet-800',
-  on_site: 'bg-blue-100 text-blue-800',
-  completed: 'bg-emerald-100 text-emerald-800',
-  cancelled: 'bg-slate-200 text-slate-600',
+  scheduled: 'bg-sky-100 text-sky-700',
+  assigned: 'bg-indigo-100 text-indigo-700',
+  en_route: 'bg-violet-100 text-violet-700',
+  on_site: 'bg-brand-100 text-brand-700',
+  completed: 'bg-emerald-100 text-emerald-700',
+  cancelled: 'bg-slate-200 text-slate-500',
 }
 
 /** Allowed forward transitions for the technician status stepper. */
@@ -63,10 +63,10 @@ export const QUOTE_STATUS_LABELS: Record<QuoteStatus, string> = {
 }
 
 export const QUOTE_STATUS_COLORS: Record<QuoteStatus, string> = {
-  draft: 'bg-slate-200 text-slate-600',
-  sent: 'bg-sky-100 text-sky-800',
-  approved: 'bg-emerald-100 text-emerald-800',
-  declined: 'bg-rose-100 text-rose-800',
+  draft: 'bg-slate-200 text-slate-500',
+  sent: 'bg-sky-100 text-sky-700',
+  approved: 'bg-emerald-100 text-emerald-700',
+  declined: 'bg-rose-100 text-rose-700',
 }
 
 export const INVOICE_STATUS_LABELS: Record<InvoiceStatus, string> = {
@@ -76,7 +76,7 @@ export const INVOICE_STATUS_LABELS: Record<InvoiceStatus, string> = {
 }
 
 export const INVOICE_STATUS_COLORS: Record<InvoiceStatus, string> = {
-  draft: 'bg-slate-200 text-slate-600',
+  draft: 'bg-slate-200 text-slate-500',
   sent: 'bg-amber-100 text-amber-800',
-  paid: 'bg-emerald-100 text-emerald-800',
+  paid: 'bg-emerald-100 text-emerald-700',
 }

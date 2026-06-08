@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth, homePathFor } from './AuthContext'
 import { FullPageSpinner } from '@/components/ui'
+import LandingPage from '@/pages/marketing/LandingPage'
 import type { UserRole } from '@/lib/types'
 
 /** Requires a logged-in session. */
@@ -21,9 +22,11 @@ export function RequireRole({ roles }: { roles: UserRole[] }) {
   return <Outlet />
 }
 
-/** Index route: sends a logged-in user to their role's home. */
+/** Root route: marketing landing for logged-out visitors, role-home redirect for logged-in users. */
 export function RoleHome() {
-  const { profile, loading } = useAuth()
-  if (loading || !profile) return <FullPageSpinner />
+  const { session, profile, loading } = useAuth()
+  if (loading) return <FullPageSpinner />
+  if (!session) return <LandingPage />
+  if (!profile) return <FullPageSpinner />
   return <Navigate to={homePathFor(profile)} replace />
 }
